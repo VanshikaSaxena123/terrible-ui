@@ -1,6 +1,30 @@
 ---
 import { examples } from "../../data/examples";
 
+// Import your example components
+import TerribleForm from "../../components/examples/TerribleForm.astro";
+import PopupHell from "../../components/examples/PopupHell.astro";
+
+// Props from getStaticPaths
+const { example } = Astro.props;
+
+// Map slugs to components with literal typing
+const componentsMap = {
+  "terrible-form": TerribleForm,
+  "popup-hell": PopupHell,
+} as const;
+
+type Slug = keyof typeof componentsMap;
+
+// TypeScript-safe component selection
+const ExampleComponent = componentsMap[example.slug as Slug];
+
+// Optional: throw if slug not mapped
+if (!ExampleComponent) {
+  throw new Error(`No component found for slug: ${example.slug}`);
+}
+
+// Provide static paths for Astro to pre-render
 export async function getStaticPaths() {
   return examples.map(ex => ({
     params: { slug: ex.slug },
@@ -8,7 +32,6 @@ export async function getStaticPaths() {
   }));
 }
 
-const { example } = Astro.props;
 ---
 
 <html lang="en">
@@ -20,7 +43,9 @@ const { example } = Astro.props;
   <body class="p-6 max-w-3xl mx-auto">
     <a href={import.meta.env.BASE_URL} class="text-blue-400 underline">← Back</a>
     <h1 class="text-3xl font-bold mt-4">{example.title}</h1>
-    <img src={example.img} alt={example.title} class="rounded-xl my-6" />
-    <p class="text-lg text-zinc-300">{example.desc}</p>
+    <p class="text-lg text-zinc-300 mb-6">{example.desc}</p>
+
+    <!-- Render the mapped example component -->
+    <ExampleComponent />
   </body>
 </html>

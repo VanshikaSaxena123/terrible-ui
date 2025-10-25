@@ -1,16 +1,19 @@
 ---
-
+import { examples } from "../data/examples";
+import ExampleCard from "../components/ExampleCard.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terrible UI Gallery 😬</title>
+  </head>
+  <body class="p-6 max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-6 text-center">🧩 The Terrible UI Gallery</h1>
+    <p class="text-center text-zinc-400 mb-10">A celebration of everything wrong with design.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {examples.map((ex) => <ExampleCard {...ex} />)}
+    </div>
+  </body>
 </html>

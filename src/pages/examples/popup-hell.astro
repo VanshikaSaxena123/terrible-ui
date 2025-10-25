@@ -1,0 +1,22 @@
+---
+import { examples } from "../../data/examples";
+const example = examples.find(e => e.link === "/examples/popup-hell");
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{example.title} | Terrible UI Gallery</title>
+  </head>
+  <body class="p-6 max-w-3xl mx-auto">
+    <a href="/" class="text-blue-400 underline">← Back</a>
+    <h1 class="text-3xl font-bold mt-4">{example.title}</h1>
+    <img src={example.img} alt={example.title} class="rounded-xl my-6" />
+    <p class="text-lg text-zinc-300">
+      Popups upon popups. Every click spawns another one.  
+      The user is trapped in a loop of frustration and regret.  
+      <strong>A true masterpiece of bad UX.</strong>
+    </p>
+  </body>
+</html>

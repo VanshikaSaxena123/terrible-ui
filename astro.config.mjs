@@ -19,7 +19,7 @@ const isProd = process.env.NODE_ENV === "production";
 // In production, set the base to match your repo name
 // Locally, leave it blank so links and images work
 export default defineConfig({
-  site: "https://yourusername.github.io/terrible-ui/",
+  site: "https://vanshikasaxena123.github.io/terrible-ui/",
   base: isProd ? "/terrible-ui/" : "/",
   vite: {
     plugins: [tailwindcss()]
